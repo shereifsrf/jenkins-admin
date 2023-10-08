@@ -3,7 +3,7 @@ CLI_FOLDER=cli
 VENV_NAME=test-venv
 
 run() {
-    make run ARGS="$1"
+    make run ARGS="$*"
 }
 
 cli() {

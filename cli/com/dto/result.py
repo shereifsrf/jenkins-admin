@@ -1,5 +1,6 @@
 """DTO objct for results from cli"""
 
+
 class Result:
     """class to store results from cli"""
 
