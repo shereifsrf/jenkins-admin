@@ -1,0 +1,10 @@
+{
+    "__NOTES__": [
+        "This is a sample file with configs",
+        "Do not add credentials in plain text, alway use base64, use base64 helper command"
+    ],
+
+
+    "name": "Jenkins-admin",
+    "version": "1.0.0"
+}

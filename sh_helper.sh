@@ -2,6 +2,10 @@ CLI_FOLDER=cli
 
 VENV_NAME=test-venv
 
+run() {
+    make run ARGS="$1"
+}
+
 cli() {
     set_python
     echo "Creating virtual environment \"$VENV_NAME\""

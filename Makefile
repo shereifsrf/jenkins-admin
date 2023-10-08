@@ -1,15 +1,17 @@
 CLI_FOLDER?=cli
 VENV_NAME=test-venv
 
-run:
-	@python $(CLI_FOLDER)/run.py
-
 format: 
 	@black --config ./$(CLI_FOLDER)/config/pyproject.toml $(CLI_FOLDER)
 	@pylint --rcfile ./$(CLI_FOLDER)/config/.pylintrc $(CLI_FOLDER)
 
-freeze:
-	pip freeze > $(CLI_FOLDER)/requirements.txt
+install:
+	@pip install "$(filter-out $@,$(MAKECMDGOALS))"
+	make freeze
+
+
+
+
 	
 setup:
 	@echo "setup dependencies"
@@ -17,7 +19,11 @@ setup:
 	make requirements
 	@echo "setup done"
 
+freeze:
+	pip freeze > $(CLI_FOLDER)/requirements.txt
 
+run:
+	@python $(CLI_FOLDER)/run.py $(ARGS)
 
 unsetup:
 	@echo "uninstall dependencies"

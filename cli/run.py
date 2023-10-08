@@ -1,16 +1,10 @@
 """Entry point for the CLI."""
 
-import logging
-
-from com.command.parser import Parser
+from com.log import log
+from com.command.parser import parser
+import bus.status
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        level=logging.DEBUG,
-        format="%(levelname)s %(filename)s %(funcName)s %(message)s",
-        handlers=[logging.FileHandler("cli/bin/logs/debug.log"), logging.StreamHandler()],
-    )
-
-    logging.info("Starting CLI")
-    Parser.parser()
+    log.info("Starting CLI")
+    parser()
