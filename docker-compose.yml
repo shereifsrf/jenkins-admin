@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: .config/jenkins/Dockerfile
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    networks:
+      - jenkins_network
+    volumes:
+      - jenkins_data:/var/jenkins_home
+    environment:
+      - JENKINS_HOME=/var/jenkins_home
+
+  artifactory:
+    build:
+      context: .
+      dockerfile: .config/jfrog/Dockerfile
+    container_name: artifactory
+    ports:
+      - "8081:8081"
+      - "8082:8082"  # Add this line to expose port 8082
+    networks:
+      - jenkins_network
+    volumes:
+      - artifactory_data:/opt/artifactory/data
+
+networks:
+  jenkins_network:
+    driver: bridge
+
+volumes:
+  jenkins_data:
+  artifactory_data:
