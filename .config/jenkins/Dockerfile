@@ -13,6 +13,10 @@ RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
   echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
   https://download.docker.com/linux/debian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
+# download python version 3.12.0
+RUN curl -fsSLo /tmp/python-3.12.0.tar.xz \
+  https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tar.xz
+
 # Update package repository and install Docker CLI
 RUN apt-get update && apt-get install -y docker-ce-cli
 
