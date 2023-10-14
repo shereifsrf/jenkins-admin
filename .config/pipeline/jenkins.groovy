@@ -7,9 +7,9 @@ pipeline {
                 docker {
                     image 'python:3.12.0'
                 }
-                steps {
-                    sh 'python --version'
-                }
+            }
+            steps {
+                sh 'python --version'
             }
         }
     }
