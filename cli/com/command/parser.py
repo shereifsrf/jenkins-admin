@@ -12,16 +12,24 @@ import com.configuration as Config
 __all__ = ["parser", "CommandParser", "ArgParser"]
 
 
+class _CustomArgumentParser(argparse.ArgumentParser):
+    """Custom argument parser"""
+
+    def error(self, message):
+        """error message"""
+        log.error(f"Argument parser error: {message}")
+        super().error(message)
 class _Parser(ABCMeta):
     """
     meta class for argparser to help easily add arguments and
     standard of definition
     """
 
-    _parser = argparse.ArgumentParser(
+    _parser = _CustomArgumentParser(
         prog=Config.get(Config.Property.NAME),
         description="CLI for Jenkins admin",
         epilog="This is where you might put example usage",
+        exit_on_error=False,
     )
     _subparsers = _parser.add_subparsers(dest="command", required=True)
 
@@ -46,9 +54,15 @@ class _Parser(ABCMeta):
         for key, value in obj.__dict__.items():
             if not isinstance(value, Arg):
                 raise KeyError(f"Invalid type {type(value)} for {key}")
-            
+
             value.update(key)
-            command_parser.add_argument(value.arg, dest=value.dest, type=value.arg_type, help=value.arg_help, required=value.required)
+            command_parser.add_argument(
+                value.arg,
+                dest=value.dest,
+                type=value.arg_type,
+                help=value.arg_help,
+                required=value.required,
+            )
             args.append(value)
 
         # check if the base class is ArgParser
@@ -69,6 +83,7 @@ class _Parser(ABCMeta):
     @staticmethod
     def get_constructor(is_arg_parser: bool, args: list[Arg]):
         """get constructor"""
+
         def constructor(self, **kwargs):
             """constructor"""
 
@@ -80,17 +95,16 @@ class _Parser(ABCMeta):
         return constructor
 
 
-
 def parser():
     """parse arguments"""
     args = _Parser.get_parser().parse_args()
+    
     log.debug(f"Parsing args, {args}")
+    log.info(f"Running command '{args.command}'")
     cmd = Command.get(args.command)
     del args.command
-    obj = cmd.class_type(**vars(args))
-
-    log.debug(f"Running command {obj.job_name}")
-
+    obj: CommandParser = cmd.class_type(**vars(args))
+    obj.run()
 
 
 class CommandParser(metaclass=_Parser):

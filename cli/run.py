@@ -6,5 +6,4 @@ import bus.status  # pylint: disable=unused-import
 
 
 if __name__ == "__main__":
-    log.info("Starting CLI")
     parser()

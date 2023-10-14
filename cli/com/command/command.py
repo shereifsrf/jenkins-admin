@@ -17,7 +17,9 @@ class Command:
         self.run = run
 
     @classmethod
-    def add(cls, class_type: type, dest: str, args: list[Arg], run: Callable[[], Result]):
+    def add(
+        cls, class_type: type, dest: str, args: list[Arg], run: Callable[[], Result]
+    ):
         """add command to list"""
         log.debug(f"Adding command {dest}")
         cls._COMMANDS[dest] = cls(class_type, args, run)

@@ -1,9 +1,10 @@
 """Module to check jenkins job status."""
 
+from jenkinsapi.jenkins import Jenkins
+
 from com.command.arg import Arg
 from com.dto.result import Result
 from com.log import log
-
 from com.command.parser import CommandParser
 
 

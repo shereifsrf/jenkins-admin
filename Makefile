@@ -12,11 +12,14 @@ install:
 
 
 
+pyinstaller:
+	@pyinstaller $(CLI_FOLDER)/config/pyinstaller.spec --clean --noconfirm --distpath $(CLI_FOLDER)/bin/dist --workpath $(CLI_FOLDER)/bin/build
 	
 setup:
 	@echo "setup dependencies"
 	make upgrade
 	make requirements
+	make mandatory
 	@echo "setup done"
 
 freeze:
@@ -41,7 +44,7 @@ upgrade:
 
 mandatory:
 	make upgrade
-	pip install black pylint
+	pip install black pylint pyinstaller
 
 venv:
 	@echo "check if the venv folder exists"

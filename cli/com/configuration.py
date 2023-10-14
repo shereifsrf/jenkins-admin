@@ -6,7 +6,9 @@ import os
 from com.util.base_enum import BaseEnum
 from com.log import log
 
-_CONFIGURATION_FILE = f"{os.path.dirname(__file__)}/../config/configuration.json"
+_CONFIGURATION_FILE = (
+    f"{os.path.dirname(os.path.dirname(__file__))}/config/configuration.json"
+)
 
 
 class Property(BaseEnum):
