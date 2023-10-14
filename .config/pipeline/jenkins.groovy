@@ -1,9 +1,15 @@
 pipeline {
-    agent any
+    agent none
     stages {
         stage('Build') {
-            steps {
-                sh 'echo "Hello World"'
+            agent {
+                // python 3.12.0 image
+                docker {
+                    image 'python:3.12.0'
+                }
+                steps {
+                    sh 'python --version'
+                }
             }
         }
     }

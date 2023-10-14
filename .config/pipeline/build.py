@@ -47,4 +47,15 @@ def run_testing():
 def build_cli():
     """Build cli"""
     print("Building cli")
+
+
+if __name__ == "__main__":
+    print("Starting build")
+    create_venv()
+    install_dependencies()
+    run_formatting()
+    run_linting()
+    run_testing()
+    build_cli()
+    print("Finished build")
     

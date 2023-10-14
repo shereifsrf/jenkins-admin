@@ -39,3 +39,9 @@ clir() {
     echo "Removing virtual environment $VENV_NAME"
     rm -rf $VENV_NAME
 }
+
+gcop() {
+    git add .
+    git commit -m "$1"
+    git push
+}
