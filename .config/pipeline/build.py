@@ -7,7 +7,7 @@ Then run sanity test to call --version
 
 import os
 
-VENV = "build-venv"
+VENV = "cli/build-venv"
 
 def create_venv():
     """Create venv"""
@@ -23,30 +23,31 @@ def install_dependencies():
     """Install dependencies"""
     print("Installing dependencies")
     os.system("pip install --upgrade pip setuptools wheel")
-    os.system("pip install -r requirements.txt")
+    os.system("pip install -r cli/requirements.txt")
     print("Installed dependencies")
 
 def run_formatting():
     """Run formatting"""
     print("Running formatting")
-    os.system("black --config cli/.config/pyproject.toml cli")
+    os.system("black --config cli/config/pyproject.toml cli")
     print("Ran formatting")
 
 def run_linting():
     """Run linting"""
     print("Running linting")
-    os.system("pylint --rcfile cli/.config/pylintrc cli")
+    os.system("pylint --rcfile cli/config/.pylintrc cli")
     print("Ran linting")
 
 def run_testing():
     """Run testing"""
     print("Running testing")
-    os.system("pytest --cov=cli --cov-report=xml --cov-report=html")
+    os.system("pytest --cov-report=html:cli/bin/coverage_html --cov=cli --cache-clear cli")
     print("Ran testing")
 
 def build_cli():
     """Build cli"""
     print("Building cli")
+    os.system("pyinstaller cli/config/pyinstaller.spec --clean --noconfirm --distpath cli/bin/dist --workpath cli/bin/build")
 
 
 if __name__ == "__main__":

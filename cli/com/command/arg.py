@@ -1,9 +1,6 @@
 """Arg class for storing the structure of the command line arguments"""
 
 
-from com.log import log
-
-
 class Arg:
     """Class for args to store the structure"""
 

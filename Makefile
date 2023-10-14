@@ -44,8 +44,17 @@ upgrade:
 
 mandatory:
 	make upgrade
-	pip install black pylint pyinstaller
+	pip install black pylint pyinstaller pytest pytest-cov
 
 venv:
 	@echo "check if the venv folder exists"
 	[ ! -d "$(FULLPATH)" ] && python -m venv $(FULLPATH)
+
+pytest:
+	pytest $(CLI_FOLDER)
+
+coverage:
+	pytest --cov-report=html:$(CLI_FOLDER)/bin/coverage_html --cov=$(CLI_FOLDER) --cache-clear $(CLI_FOLDER)
+
+build:
+	python .config/pipeline/build.py

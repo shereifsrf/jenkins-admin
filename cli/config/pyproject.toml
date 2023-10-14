@@ -3,6 +3,8 @@ exclude = '''
 (
   /(
     test-venv
+    | build-venv
+
   )/
 )
 '''

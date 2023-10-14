@@ -6,7 +6,7 @@ from com.command.command import Command
 from com.command.arg import Arg
 
 from com.dto.result import Result
-from com.log import log
+from com.logger import log
 import com.configuration as Config
 
 __all__ = ["parser", "CommandParser", "ArgParser"]
@@ -19,6 +19,8 @@ class _CustomArgumentParser(argparse.ArgumentParser):
         """error message"""
         log.error(f"Argument parser error: {message}")
         super().error(message)
+
+
 class _Parser(ABCMeta):
     """
     meta class for argparser to help easily add arguments and
@@ -41,12 +43,12 @@ class _Parser(ABCMeta):
         help="show program's version number and exit",
     )
 
-    def __init__(cls, name, bases, attrs):
+    def __init__(cls, name, bases, attrs):  # pylint: disable=unused-argument
         """set up parser"""
         if name in ["CommandParser", "ArgParser"]:
             return
 
-        obj: CommandParser = cls()
+        obj: CommandParser = cls()  # pylint: disable=no-value-for-parameter
         # add command with arguments for cli
         command_dest = Command.extract_command_name(name)
         command_parser = _Parser._subparsers.add_parser(command_dest)
@@ -98,7 +100,7 @@ class _Parser(ABCMeta):
 def parser():
     """parse arguments"""
     args = _Parser.get_parser().parse_args()
-    
+
     log.debug(f"Parsing args, {args}")
     log.info(f"Running command '{args.command}'")
     cmd = Command.get(args.command)

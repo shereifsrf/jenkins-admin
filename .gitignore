@@ -3,3 +3,6 @@ __pycache__
 **-venv
 __test.py
 .DS_Store
+.pytest_cache
+coverage_html
+.coverage

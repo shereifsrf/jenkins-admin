@@ -4,7 +4,7 @@ import json
 import os
 
 from com.util.base_enum import BaseEnum
-from com.log import log
+from com.logger import log
 
 _CONFIGURATION_FILE = (
     f"{os.path.dirname(os.path.dirname(__file__))}/config/configuration.json"

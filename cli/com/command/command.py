@@ -1,7 +1,7 @@
 """Command module for command parser"""
 
 from typing import Callable
-from com.log import log
+from com.logger import log
 from com.dto.result import Result
 from com.command.arg import Arg
 
