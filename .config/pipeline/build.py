@@ -52,7 +52,7 @@ def build_cli():
 
 if __name__ == "__main__":
     print("Starting build")
-    create_venv()
+    # create_venv()
     install_dependencies()
     run_formatting()
     run_linting()

@@ -26,7 +26,12 @@ set_python() {
 
 unset_python() {
     echo "Unsetting python3.12"
+    eval "$(pyenv init -)"
     pyenv local --unset
+    eval "$(pyenv init -)"
+    # deactivate python and pip
+    eval "$(pyenv init -)"
+    
 }
 
 deactivate_cli() {
