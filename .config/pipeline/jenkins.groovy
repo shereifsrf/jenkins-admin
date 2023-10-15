@@ -4,7 +4,6 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    label 'docker-agent'
                     image '.config/pipeline/python'
                 }
             }
