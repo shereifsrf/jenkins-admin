@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        // use the dockerfile from .config/python/Dockerfile
+        dockerfile {
+            filename '.config/python/Dockerfile'
+        }
+    }
     stages {
         stage('Build') {
             steps {
