@@ -35,6 +35,3 @@ RUN pyenv global 3.12.0
 
 # Cleanup
 RUN rm -rf /var/cache/apk/*
-
-# Start a shell by default
-CMD ["/bin/bash"]

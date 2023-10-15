@@ -1,20 +1,6 @@
 version: '3'
 
 services:
-  jenkins:
-    build:
-      context: .
-      dockerfile: .config/jenkins/Dockerfile
-    container_name: jenkins
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    networks:
-      - jenkins_network
-    volumes:
-      - jenkins_data:/var/jenkins_home
-    environment:
-      - JENKINS_HOME=/var/jenkins_home
 
   artifactory:
     build:
@@ -34,5 +20,4 @@ networks:
     driver: bridge
 
 volumes:
-  jenkins_data:
   artifactory_data:

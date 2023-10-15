@@ -1,12 +1,11 @@
 pipeline {
-    agent {
-        // use the dockerfile from .config/python/Dockerfile
-        dockerfile {
-            filename '.config/python/Dockerfile'
-        }
-    }
+    agent none
     stages {
         stage('Build') {
+            agent {
+                docker {
+                    label 'docker-agent'
+                }
             steps {
                 echo 'Building...'
                 sh '/usr/local/bin/python --version'
