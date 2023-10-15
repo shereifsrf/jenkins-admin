@@ -5,7 +5,7 @@ pipeline {
             agent {
                 docker {
                     label 'docker-agent'
-                    file '.config/pipeline/python'
+                    image '.config/pipeline/python'
                 }
             }
             steps {
