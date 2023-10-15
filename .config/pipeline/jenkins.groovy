@@ -6,6 +6,7 @@ pipeline {
                 docker {
                     label 'docker-agent'
                 }
+            }
             steps {
                 echo 'Building...'
                 sh '/usr/local/bin/python --version'
