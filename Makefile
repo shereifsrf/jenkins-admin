@@ -31,6 +31,7 @@ run:
 unsetup:
 	@echo "uninstall dependencies"
 	pip uninstall -r $(CLI_FOLDER)/requirements.txt -y	
+	pip uninstall black pylint pyinstaller pytest pytest-cov -y
 
 
 create-pylintrc:
