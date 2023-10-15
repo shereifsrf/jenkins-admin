@@ -13,6 +13,12 @@ pipeline {
             steps {
                 sh 'python .config/pipeline/build.py'
             }
+            // publish artifact inside cli/bin/dist/jenkins_admin
+            post {
+                always {
+                    archiveArtifacts artifacts: 'cli/bin/dist/jenkins_admin/**'
+                }
+            }
         }
     }
 }
