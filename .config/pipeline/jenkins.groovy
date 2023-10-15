@@ -3,7 +3,8 @@ pipeline {
     // image is from config/pipeline/python
     agent {
         docker {
-            image '.config/pipeline/python'
+            // Specify the Dockerfile path here
+            image 'ubuntu-tester'
             label 'docker-slave-demo'
         }
     }
