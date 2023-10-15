@@ -1,15 +1,16 @@
 pipeline {
-    agent none
+    // docker agent with label 'docker-slave-demo'
+    // image is from config/pipeline/python
+    agent {
+        docker {
+            image '.config/pipeline/python'
+            label 'docker-slave-demo'
+        }
+    }
     stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image '.config/pipeline/python'
-                }
-            }
+        stage('Test') {
             steps {
-                echo 'Building...'
-                sh '/usr/local/bin/python --version'
+                sh 'python --version'
             }
         }
     }
