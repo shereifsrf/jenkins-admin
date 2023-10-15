@@ -4,7 +4,7 @@ pipeline {
     agent {
         docker {
             // Specify the Dockerfile path here
-            image 'ubuntu-tester'
+            image 'python:3.12.0'
             label 'docker-slave-demo'
         }
     }
